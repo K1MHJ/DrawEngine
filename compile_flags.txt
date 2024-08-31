@@ -1,0 +1,18 @@
+-include cstdint
+-I/opt/homebrew/Cellar/sfml/2.6.1/include
+-I/opt/homebrew/Cellar/ncurses/6.5/include
+-I/opt/homebrew/include/
+-I/usr/include/
+-I/usr/local/include/
+-I./vendor/spdlog/include
+-I./DrawEngine/
+-I./DrawEngine/Core
+-I./DrawEngine/MacOs
+-I./DrawEngine/Debug
+-I./DrawEngine/Events
+-I./DrawEngine/Utils
+-I./DrawEngine/SFML
+-I./DrawEngine/Renderer
+-I./AppTemplate
+-std=c++20
+-xc++
