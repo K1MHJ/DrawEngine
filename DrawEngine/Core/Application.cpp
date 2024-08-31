@@ -37,6 +37,12 @@ void Application::PushLayer(Layer *layer) {
   layer->OnAttach();
 }
 
+void Application::PopLayer(Layer *layer) {
+  PROFILE_FUNCTION();
+
+  m_LayerStack.PopLayer(layer);
+  layer->OnDetach();
+}
 void Application::PushOverlay(Layer *layer) {
   PROFILE_FUNCTION();
 
@@ -70,6 +76,7 @@ void Application::OnEvent(Event &e) {
 
 void Application::Run() {
   PROFILE_FUNCTION();
+  m_LastFrameTime = Time::GetTime();
   static uint32_t runcnt = 0;
   while (m_Running) {
     PROFILE_SCOPE("RunLoop");

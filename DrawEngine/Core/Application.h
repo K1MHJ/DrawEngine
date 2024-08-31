@@ -41,6 +41,7 @@ public:
   void OnEvent(Event& e);
 
   void PushLayer(Layer* layer);
+  void PopLayer(Layer* layer);
   void PushOverlay(Layer* layer);
 
   Window& GetWindow() { return *m_Window; }
