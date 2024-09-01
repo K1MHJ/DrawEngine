@@ -1,9 +1,12 @@
 #include "Renderer2D.h"
 #include "RenderCommand.h"
+#include "SFML/Graphics/PrimitiveType.hpp"
 #include "SFML/Graphics/RectangleShape.hpp"
 #include "SfmlPF.h"
 #include "pch.h"
 #include <SFML/Graphics.hpp>
+#include <cmath>
+
 struct Renderer2DData {
   std::vector<sf::Shape *> shapes;
   std::vector<sf::Text *> texts;
@@ -59,6 +62,16 @@ void Renderer2D::DrawCircle(float radius, float x, float y, const Color &clr) {
   shape->setFillColor(sf::Color(clr.red, clr.green, clr.blue));
   s_Data.shapes.push_back(shape);
 }
+void Renderer2D::DrawLine(float x, float y, float x2, float y2, float thick,
+                          const Color &clr) {
+  double s = sqrt(pow(x - x2, 2) + pow(y - y2, 2));
+  double r = atan2(y2 - y, x2 - x) * 180.0 / M_PI;
+  sf::RectangleShape *line = new sf::RectangleShape(sf::Vector2f(s, thick));
+  line->setPosition(x, y - thick / 2.0);
+  line->rotate(r);
+  line->setFillColor(sf::Color(clr.red, clr.green, clr.blue));
+  s_Data.shapes.push_back(line);
+}
 void Renderer2D::DrawLineRectangle(float x, float y, float cx, float cy,
                                    const Color &clr, float thickness) {
   sf::RectangleShape *shape = new sf::RectangleShape(sf::Vector2f(cx, cy));
@@ -76,7 +89,8 @@ void Renderer2D::DrawFillRectangle(float x, float y, float cx, float cy,
   shape->setFillColor(sf::Color(clr.red, clr.green, clr.blue));
   s_Data.shapes.push_back(shape);
 }
-void Renderer2D::DrawText(const char *str, float x, float y, int textSize, const sf::Color& color) {
+void Renderer2D::DrawText(const char *str, float x, float y, int textSize,
+                          const sf::Color &color) {
   sf::Text *text = new sf::Text();
   text->setPosition(x, y);
   text->setFont(s_font);

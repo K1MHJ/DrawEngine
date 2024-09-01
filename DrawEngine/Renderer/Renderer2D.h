@@ -13,6 +13,7 @@ public:
   // Primitives
   static void Clear(uint8_t red, uint8_t green, uint8_t blue);
   static void DrawCircle(float radius, float x, float y, const Color &clr);
+  static void DrawLine(float x, float y, float x2, float y2, float thick, const Color &clr);
   static void DrawLineRectangle(float x, float y, float cx, float cy,
                                 const Color &clr, float thickness = 1.0f);
   static void DrawFillRectangle(float x, float y, float cx, float cy,
