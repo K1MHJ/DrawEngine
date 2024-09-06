@@ -77,8 +77,7 @@ void Renderer2D::DrawLineRectangle(float x, float y, float cx, float cy,
   sf::RectangleShape *shape = new sf::RectangleShape(sf::Vector2f(cx, cy));
   shape->setPosition(x, y);
   shape->setOutlineThickness(thickness);
-  RenderCommand::GetClearColor(s_bkgRed, s_bkgGreen, s_bkgBlue);
-  shape->setFillColor(sf::Color(s_bkgRed, s_bkgGreen, s_bkgBlue));
+  shape->setFillColor(sf::Color(0, 0, 0, 0));
   shape->setOutlineColor(sf::Color(clr.red, clr.green, clr.blue));
   s_Data.shapes.push_back(shape);
 }
